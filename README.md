@@ -1,71 +1,62 @@
-# sigfade README
+# Sigfade
 
-This is the README for your extension "sigfade". After writing up a brief description, we recommend including the following sections.
+Reduce visual noise from Sorbet's `sig` blocks in Ruby files by fading them or auto-collapsing them.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- **Opacity Fading**: Sig blocks are displayed with reduced opacity when your cursor is outside them
+- **Auto-Collapse**: Optionally auto-fold sig blocks to hide them completely
+- **Smart Visibility**: Sig blocks become fully visible when you move your cursor inside them
+- **Configurable**: Adjust opacity level and choose between fade, fold, or both modes
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
 This extension contributes the following settings:
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+| Setting | Type | Default | Description |
+|---------|------|---------|-------------|
+| `sigfade.mode` | `string` | `"fade"` | How to handle sig blocks: `fade`, `fold`, or `both` |
+| `sigfade.opacity` | `number` | `0.5` | Opacity for faded sig blocks (0.1 = very faded, 1.0 = fully visible) |
+| `sigfade.autoFoldOnOpen` | `boolean` | `false` | Automatically fold all sig blocks when opening a Ruby file |
 
-## Known Issues
+## Commands
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- `Sigfade: Fold All Sig Blocks` - Fold all sig blocks in the active editor
+- `Sigfade: Unfold All Sig Blocks` - Unfold all sig blocks in the active editor
+- `Sigfade: Toggle Mode (Fade/Fold/Both)` - Cycle through the available modes
+
+## Supported Sig Block Formats
+
+```ruby
+# Single-line (brace style)
+sig { void }
+sig { returns(String) }
+sig { params(x: Integer, y: String).returns(Boolean) }
+
+# Multi-line (do...end style)
+sig do
+  params(
+    x: SomeType,
+    y: SomeOtherType,
+  )
+  .returns(MyReturnType)
+end
+```
+
+## Usage
+
+1. Install the extension
+2. Open a Ruby file with Sorbet type signatures
+3. Sig blocks will automatically fade when your cursor is outside them
+4. Move your cursor into a sig block to see it at full opacity
+5. Use `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux) and search for "Sigfade" to access commands
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Initial release with:
+- Opacity fading for sig blocks
+- Custom folding provider for sig blocks
+- Configurable opacity and modes
+- Auto-fold on file open option

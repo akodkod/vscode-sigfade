@@ -68,14 +68,6 @@ export class DecorationManager {
       return;
     }
 
-    // Check if fading is enabled
-    const config = vscode.workspace.getConfiguration('sigfade');
-    const mode = config.get<string>('mode', 'fade');
-    if (mode !== 'fade' && mode !== 'both') {
-      editor.setDecorations(this.decorationType, []);
-      return;
-    }
-
     const sigBlocks = getCachedSigBlocks(document);
     const cursorPosition = editor.selection.active;
 

@@ -22,49 +22,15 @@
   ],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "sigfade.foldAllSigs",
-        "title": "Sigfade: Fold All Sig Blocks"
-      },
-      {
-        "command": "sigfade.unfoldAllSigs",
-        "title": "Sigfade: Unfold All Sig Blocks"
-      },
-      {
-        "command": "sigfade.toggleMode",
-        "title": "Sigfade: Toggle Mode (Fade/Fold/Both)"
-      }
-    ],
     "configuration": {
       "title": "Sigfade",
       "properties": {
-        "sigfade.mode": {
-          "type": "string",
-          "enum": [
-            "fade",
-            "fold",
-            "both"
-          ],
-          "enumDescriptions": [
-            "Fade sig blocks using reduced opacity",
-            "Auto-fold sig blocks",
-            "Both fade and allow folding"
-          ],
-          "default": "fade",
-          "description": "How to handle Sorbet sig blocks"
-        },
         "sigfade.opacity": {
           "type": "number",
           "default": 0.5,
           "minimum": 0.1,
           "maximum": 1.0,
           "description": "Opacity for faded sig blocks (0.1 = very faded, 1.0 = fully visible)"
-        },
-        "sigfade.autoFoldOnOpen": {
-          "type": "boolean",
-          "default": false,
-          "description": "Automatically fold all sig blocks when opening a Ruby file"
         }
       }
     }
